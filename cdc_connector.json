@@ -1,0 +1,27 @@
+{
+	"name": "src.cdc.dbo.ad.SourceData.Sample",
+	"connector.class": "io.debezium.connector.sqlserver.SqlServer Connector",
+	"tasks.max": "1",
+	"database.names": "reference",
+	"database.hostname": "sql_server",
+	"database.port": "1433",
+	"database.user": "sa",
+	"database.password": "12345Abc%",
+	"schema.history.internal.kafka.topic" : "reference.schema_history",
+	"schema.history.internal.kafka.bootstrap.servers": "kafka: 9092",
+	"table.include.list": "dbo.C_RegionCategory, dbo.C_RegionDataSource, dbo.C_RegionType, dbo.C_Region Membership,dbo.C_Region",
+	"decimal.handling.mode" : "double",
+	"output.data.format": "AVRO",
+	"topic.prefix": "sql_server",
+	"topic.creation.enable" : "false",
+	"database.encrypt": "false",
+	"snapshot.mode": "initial",
+	"topic.creation.default.replication. factor": 1,
+	"topic.creation.default.partitions" :1,
+	"transforms" : "unwrap",
+	"transforms. unwrap.type":"io.debezium.transforms. ExtractNewRecordState",
+	"transforms. unwrap.drop.tombstones" : "false",
+	"transforms. unwrap.delete.handling.mode":"rewrite",
+	"transforms. unwrap.add.fields":"table"
+
+}
