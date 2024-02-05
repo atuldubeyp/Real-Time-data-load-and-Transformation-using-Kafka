@@ -1,0 +1,28 @@
+{
+"name": "jdbc-connector-debezium-C_Region",
+"connector.class": "io.debezium.connector.jdbc.JdbcSinkConnector",
+"tasks.max": "1",
+"topics": "sql_server.reference.dbo.Region",
+"connection.url": "jdbc:postgresql://pgdb: 5432/test_db",
+"connection.username": "root",
+"connection.password": "root",
+"insert.mode": "upsert",
+"delete.enabled": "true",
+"primary.key.mode": "record_key",
+"primary.key.fields": "regionid",
+"schema.evolution": "basic",
+"database.time_zone": "UTC",
+"table.name. format": "reference.c_region",
+"transforms": "t1, t2, t3",
+"transforms.t1.type": "org.apache.kafka.connect.transforms. Replace Field $Value",
+"transforms.t1.include": "regionid, originalid, code, dsc, definition, begindt, enddt, regioncategoryid, regiontypeid, regiondatasourceid, createdt,create_by,update_by,update_date",
+"transforms.t1.renames": "regionid: region_id, originalid:original_id, dsc: description, begindt: begin_date, enddt:end_date, regioncategoryid:region_category_id,regiontypeid=region_type_id,regiondatasourceid:region_data_source_id",
+"transforms.t2.type": "org.apache.kafka.connect.transforms. InsertField $Value",
+"transforms.t2.static.field": "update_by",
+"transforms.t2.static.value": "CORP\\A",
+"transforms.t3.type": "org.apache.kafka.connect.transforms. InsertField $Value",
+"transforms.t3.static.field": "create_by",
+"transforms.t3.static.value": "CORP\\A",
+"transforms.t3.timestamp.field": "update_date"
+
+}
